@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.15.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.5.3'
+}

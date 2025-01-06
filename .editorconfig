@@ -1,0 +1,32 @@
+# Top-level EditorConfig file
+# Configurações aplicáveis a todos os arquivos
+root = true
+
+# Configurações gerais para todos os arquivos
+[*]
+charset = utf-8              # Codificação de caracteres
+indent_style = space         # Usar espaços em vez de tabulação
+indent_size = 4              # Tamanho da indentação
+end_of_line = lf             # Usar LF para final de linha
+insert_final_newline = true  # Garantir uma nova linha no final do arquivo
+trim_trailing_whitespace = true # Remover espaços em branco no final das linhas
+
+# Configurações específicas para arquivos Java
+[*.java]
+max_line_length = 120        # Limite de comprimento por linha
+continuation_indent_size = 8 # Indentação para linhas que continuam
+insert_final_newline = true  # Garantir nova linha no final de arquivos Java
+
+# Configurações específicas para arquivos de configuração como XML e YAML
+[*.{xml,yaml,yml}]
+indent_style = space
+indent_size = 2
+
+# Configurações específicas para arquivos JSON
+[*.json]
+indent_style = space
+indent_size = 2
+
+# Configurações para arquivos de texto
+[*.{md,txt}]
+trim_trailing_whitespace = false  # Permitir espaços ao final das linhas

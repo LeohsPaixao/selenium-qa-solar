@@ -4,7 +4,7 @@ JAVA = java
 JAVAC = javac
 
 # Comandos
-.PHONY: all clean compile test run report dependencies package install checkstyle help
+.PHONY: all clean compile test run report dependencies package install checkstyle help format
 
 all: compile test
 
@@ -39,6 +39,10 @@ install:
 # Comando para verificar o estilo do código
 checkstyle:
 	$(MVN) checkstyle:check
+
+# Comando para formatar os arquivos JAVA
+format:
+	$(MVN) fmt:format
 
 # Comando de ajuda
 help:

@@ -13,7 +13,7 @@ trim_trailing_whitespace = true # Remover espaços em branco no final das linhas
 
 # Configurações específicas para arquivos Java
 [*.java]
-max_line_length = 120        # Limite de comprimento por linha
+max_line_length = 80        # Limite de comprimento por linha
 continuation_indent_size = 8 # Indentação para linhas que continuam
 insert_final_newline = true  # Garantir nova linha no final de arquivos Java
 

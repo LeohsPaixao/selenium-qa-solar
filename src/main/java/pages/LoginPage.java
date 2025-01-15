@@ -33,6 +33,21 @@ public class LoginPage {
         loginButton = driver.findElement(By.cssSelector("[data-testid='btn-login']"));
         linkSignup = driver.findElement(By.cssSelector("[data-testid='link-signup']"));
         linkRecoverPassword = driver.findElement(By.cssSelector("[data-testid='link-recover-password']"));
+
+    }
+
+    public boolean waitForElementToBeVisible(WebElement element) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+
+            return true;
+
+        }catch (Throwable t){
+            return false;
+        }
     }
 
     public boolean isFormLoginVisible() {
@@ -60,10 +75,12 @@ public class LoginPage {
     }
 
     public void fillEmail(String email) {
+        waitForElementToBeVisible(emailInput);
         emailInput.sendKeys(email);
     }
 
     public void fillPassword(String password) {
+        waitForElementToBeVisible(passwordInput);
         passwordInput.sendKeys(password);
     }
 
@@ -76,13 +93,9 @@ public class LoginPage {
         actions.doubleClick(loginButton).perform();
     }
 
-    public String getToastContentText() {
-        toastContent = driver.findElement(By.cssSelector("[data-testid='toast-content']"));
-
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(toastContent));
-
-        String toastMessageContent = toastContent.getText();
-        return toastMessageContent;
+    public boolean getToastContentText(String message) {
+        toastContent = driver.findElement(By.cssSelector(String.format("[data-testid='toast-content']", message)));
+        return waitForElementToBeVisible(toastContent);
     }
 
     public void clickSignupLink() {

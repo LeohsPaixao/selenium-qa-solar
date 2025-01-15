@@ -1,5 +1,3 @@
-
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -17,7 +15,6 @@ public class LoginTests {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("http://localhost:8181/");
 
         loginPage = new LoginPage(driver);
@@ -47,7 +44,7 @@ public class LoginTests {
         loginPage.fillPassword("password@example.com");
         Assert.assertTrue(loginPage.isLoginButtonEnabled(), "Botão de login deveria estar habilitado.");
         loginPage.clickLoginButton();
-        Assert.assertTrue(loginPage.getToastContentText().contains("Não foi possivel realizar login com este usuário."));
+        Assert.assertTrue(loginPage.getToastContentText("Não foi possivel realizar login com este usuário."));
     }
 
     @Test
@@ -57,7 +54,7 @@ public class LoginTests {
         loginPage.fillPassword("password");
         Assert.assertTrue(loginPage.isLoginButtonEnabled(), "Botão de login deveria estar habilitado.");
         loginPage.clickLoginButton();
-        Assert.assertTrue(loginPage.getToastContentText().contains("A senha não confere."));
+        Assert.assertTrue(loginPage.getToastContentText("A senha não confere."));
     }
 
     @Test
@@ -67,7 +64,8 @@ public class LoginTests {
         loginPage.fillPassword("123456");
         Assert.assertTrue(loginPage.isLoginButtonEnabled(), "Botão de login deveria estar habilitado.");
         loginPage.clickLoginButton();
-        Assert.assertTrue(loginPage.getToastContentText().contains("Login realizado com sucesso!"));
+        loginPage.clickLoginButton();
+        Assert.assertTrue(loginPage.getToastContentText("Login realizado com sucesso!"));
     }
 
     @Test
@@ -81,6 +79,7 @@ public class LoginTests {
     public void shouldNavigateToRecoverPasswordScreen() {
         loginPage.clickRecoverPasswordLink();
         String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("/recover-password"), "URL não redirecionou corretamente para a tela de recuperação de senha.");
+        Assert.assertTrue(currentUrl.contains("/recover-password"),
+                "URL não redirecionou corretamente para a tela de recuperação de senha.");
     }
 }

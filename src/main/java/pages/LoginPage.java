@@ -45,7 +45,7 @@ public class LoginPage {
 
             return true;
 
-        }catch (Throwable t){
+        } catch (Throwable t) {
             return false;
         }
     }
